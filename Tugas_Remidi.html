@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Validation</title>
+  <style>
+    body {
+      font-family: 'Metal Mania', cursive;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100vh;
+      margin: 0;
+      background: url('half-background.jpg') left/50% no-repeat, #001f3f right;
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #001f3f;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border: 2px solid #fff;
+      width: 50%;
+      margin-right: 10%;
+      animation: fadeIn 1s;
+    }
+
+    input {
+      padding: 10px;
+      margin: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 12px;
+      margin: 10px;
+      cursor: pointer;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.3s; /* Efek transisi warna latar belakang */
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    p#result {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    h1 {
+      color: #fff;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .loading {
+      display: none;
+      margin-top: 10px;
+      color: #fff;
+    }
+
+    .loading.active {
+      display: block;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Iceberg&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <h1>TECART INSIDER</h1>
+    
+    <p>
+      We are an organization based at Udayana University, sharing our perspectives about the world with students in the engineering faculty.
+    </p>
+    <ul>
+      <li>Mainly talk programming, ui/ux, networking, business intelligence</li>
+      <li>Analyzing with AI, with comprehensive algorithms</li>
+      <li>And many more !!!!!</li>
+    </ul>
+    
+    <form id="emailForm">
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="Masukkan alamat email">
+      <button type="button" onclick="validateEmail()">Submit</button>
+      <span class="loading" id="loadingText">Loading...</span>
+    </form>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var submitButton = document.querySelector('button');
+      submitButton.addEventListener('click', function () {
+        var loadingText = document.getElementById('loadingText');
+        loadingText.classList.add('active');
+        setTimeout(function () {
+          validateEmail();
+          loadingText.classList.remove('active');
+        }, 1500); 
+      });
+    });
+
+    function validateEmail() {
+      var emailInput = document.getElementById('email').value;
+      var resultMessage = document.getElementById('result');
+
+      var emailRegex = /dewanandatrisnadi@gmail.com/;
+
+      if (emailRegex.test(emailInput)) {
+        resultMessage.style.color = 'green';
+        resultMessage.textContent = 'Email valid!';
+      } else {
+        resultMessage.style.color = 'red';
+        resultMessage.textContent = 'Email tidak valid. Silakan coba lagi.';
+      }
+    }
+  </script>
+</body>
+</html>
